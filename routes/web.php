@@ -36,3 +36,5 @@ Route::get('/services','PagesController@services');
 
 //Here don't have to make a route for each individual method in the PostsController
 Route::resource('posts','PostsController');
+
+

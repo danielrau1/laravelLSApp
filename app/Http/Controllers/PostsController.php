@@ -27,7 +27,7 @@ class PostsController extends Controller
        // $posts = Post::orderBy('title','asc')->take(1)->get(); //limit how many you want
         //$posts = Post::orderBy('title','asc')->get(); // get all posts and order by title ascending
 
-        $posts = Post::orderBy('title','asc')->paginate(1); //paginate
+        $posts = Post::orderBy('created_at','desc')->paginate(2); //paginate
         return view('posts/index')->with('posts',$posts);
     }
 
@@ -36,9 +36,11 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    // This is just to redirect to the create post page
     public function create()
     {
-        //
+        return view('posts/create');
     }
 
     /**
@@ -49,7 +51,18 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //This is to store the creted post inside the database table
+        $this->validate($request,[
+            'title'=>'required',
+            'body'=>'required'
+        ]);
+
+        //Create post if no errors
+        $post = new Post;
+        $post->title = $request->input('title');//gets the title submitted into the form
+        $post->body= $request->input('body');
+        $post->save();
+        return redirect('/posts');
     }
 
     /**

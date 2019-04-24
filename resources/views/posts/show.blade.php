@@ -5,6 +5,7 @@
     <h1>{{$post->title}}</h1>
 <small>Written on {{$post->created_at}}</small>
    <div>
-       {{$post->body}}
+       {{--use following notation like this parse the html tags due to the ck-editor for the posts/create--}}
+       {!!$post->body!!}
    </div>
 @endsection
