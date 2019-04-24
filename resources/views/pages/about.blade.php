@@ -1,13 +1,6 @@
-<!doctype html>
-<html>
-<head>
-    {{--For the title use the APP_NAME in the .env, if nothing there then make it LSAPP2 --}}
-    <title>{{config('app.name','LSAPP2')}}</title>
-</head>
+{{--(1)make this specific part go inside layouts/app--}}
+@extends('layouts/app')
 
-
-<body>
-<h1>This is About</h1>
-
-</body>
-</html>
+@section('content')
+    <h1><?php echo $title; ?></h1>
+@endsection

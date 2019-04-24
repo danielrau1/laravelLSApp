@@ -9,14 +9,21 @@ class PagesController extends Controller
 {
     //method to go to the index page
     public function index(){
-        return view('pages/index');
+
+        $title = 'zdrastitya';
+        return view('pages/index')->with('title',$title);
     }
 
     public function about(){
-        return view('pages/about');
+        $title = 'ABOUT US';
+        return view('pages/about')->with('title',$title);
     }
 
     public function services(){
-        return view('pages/services');
+        $data=[
+          'title'=>'SERVICES',
+            'services'=>['web design','programming','SEO']
+        ];
+        return view('pages/services')->with($data);
     }
 }

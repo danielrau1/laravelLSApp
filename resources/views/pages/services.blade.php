@@ -1,13 +1,16 @@
-<!doctype html>
-<html>
-<head>
-    {{--For the title use the APP_NAME in the .env, if nothing there then make it LSAPP2 --}}
-    <title>{{config('app.name','LSAPP2')}}</title>
-</head>
+{{--(1)make this specific part go inside layouts/app--}}
+@extends('layouts/app')
 
+@section('content')
+    <h1>{{$title}}</h1>
 
-<body>
-<h1>This is Services</h1>
-
-</body>
-</html>
+    {{--loop through and output the services that were passed in the $data array--}}
+    <p>the list of services was obtained by passing the services inside the $data array:</p>
+    @if(count($services)>0)
+        <ul>
+        @foreach($services as $service)
+            <li>{{$service}}</li>
+            @endforeach
+        </ul>
+    @endif
+@endsection
