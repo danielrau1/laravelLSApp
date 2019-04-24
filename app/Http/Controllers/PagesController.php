@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-// This controller is to go to specific pages
+// ****** This controller is to go to specific pages ********* //
 class PagesController extends Controller
 {
     //method to go to the index page

@@ -33,3 +33,6 @@ Route::get('/about', function () {
 Route::get('/','PagesController@index');
 Route::get('/about','PagesController@about');
 Route::get('/services','PagesController@services');
+
+//Here don't have to make a route for each individual method in the PostsController
+Route::resource('posts','PostsController');
