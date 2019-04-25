@@ -88,7 +88,10 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        //Edits a post once click on it and in the show.php
+        $post = Post::find($id);
+        return view('posts/edit')->with('post',$post);
+
     }
 
     /**
@@ -100,7 +103,18 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //linked to the above, once decide to edit and make changes, need to update the post
+        $this->validate($request,[
+            'title'=>'required',
+            'body'=>'required'
+        ]);
+
+
+        $post = Post::find($id);
+        $post->title = $request->input('title');//gets the title submitted into the form
+        $post->body= $request->input('body');
+        $post->save();
+        return redirect('/posts');
     }
 
     /**
@@ -111,6 +125,9 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //to delete a post
+        $post = Post::find($id);
+        $post->delete();
+        return redirect('/posts');
     }
 }
