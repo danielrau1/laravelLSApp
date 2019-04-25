@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User; //(10)
 
 class HomeController extends Controller
 {
@@ -23,6 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        //(10) to fetch the posts of a specific user
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+
+
+        return view('home')->with('posts',$user->posts); //this can do due to the relationship in (9)
     }
 }

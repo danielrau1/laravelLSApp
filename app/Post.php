@@ -15,5 +15,8 @@ public $primaryKey='id';
 //timestamps
 public $timestamps = true;
 
-
+//(9) create a relationship - a post can have only 1 user
+public function user(){
+    return $this->belongsTo('App\user');
+}
 }

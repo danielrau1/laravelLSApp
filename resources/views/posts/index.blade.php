@@ -8,7 +8,8 @@
     @foreach($posts as $post)
         {{--**** the following line interacts with the PostsController@show, but never calls it!!!  ****--}}
         <h3><a href="http://localhost/lsapp2/public/posts/{{$post->id}}" >{{$post->title}}</a></h3>
-        <small>Written on {{$post->created_at}}</small>
+                                                    {{--(11) add the post user thanks to the post user relationships--}}
+        <small>Written on {{$post->created_at}} by {{$post->user->name}}</small>
     @endforeach
         {{--for the pagination--}}
         {{$posts->links()}}
