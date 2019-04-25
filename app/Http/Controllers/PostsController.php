@@ -11,6 +11,16 @@ use DB; // in order to use normal sql queries
 
 class PostsController extends Controller
 {
+
+//(12) to construct that copied from the HomeController
+    public function __construct()
+    {
+        $this->middleware('auth',['except'=>['index','show']]);
+    }
+
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -91,6 +101,14 @@ class PostsController extends Controller
     {
         //Edits a post once click on it and in the show.php
         $post = Post::find($id);
+
+        //(15)check for correct user
+        if(auth()->user()->id!== $post->user_id){
+            return redirect('/posts');
+        }
+
+
+
         return view('posts/edit')->with('post',$post);
 
     }
@@ -128,6 +146,11 @@ class PostsController extends Controller
     {
         //to delete a post
         $post = Post::find($id);
+
+        //(16)check for correct user
+        if(auth()->user()->id!== $post->user_id){
+            return redirect('/posts');
+        }
         $post->delete();
         return redirect('/posts');
     }
